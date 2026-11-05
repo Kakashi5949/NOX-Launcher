@@ -12,20 +12,17 @@ public class NoxScreen extends Screen {
     protected void init() {
         int cx = width / 2;
         int top = height / 2 - 72;
-        addRenderableWidget(Button.builder(toggle("HUD", () -> NoxClient.hud = !NoxClient.hud),
-            b -> {}).bounds(cx - 105, top, 210, 20).build());
-        addRenderableWidget(Button.builder(toggle("Coordinates", () -> NoxClient.coordinates = !NoxClient.coordinates),
-            b -> {}).bounds(cx - 105, top + 26, 210, 20).build());
-        addRenderableWidget(Button.builder(toggle("Armor Status", () -> NoxClient.armor = !NoxClient.armor),
-            b -> {}).bounds(cx - 105, top + 52, 210, 20).build());
-        addRenderableWidget(Button.builder(toggle("Keystrokes", () -> NoxClient.keystrokes = !NoxClient.keystrokes),
-            b -> {}).bounds(cx - 105, top + 78, 210, 20).build());
+        addRenderableWidget(toggleButton("HUD", () -> NoxClient.hud = !NoxClient.hud, cx, top));
+        addRenderableWidget(toggleButton("Coordinates", () -> NoxClient.coordinates = !NoxClient.coordinates, cx, top + 26));
+        addRenderableWidget(toggleButton("Armor Status", () -> NoxClient.armor = !NoxClient.armor, cx, top + 52));
+        addRenderableWidget(toggleButton("Keystrokes", () -> NoxClient.keystrokes = !NoxClient.keystrokes, cx, top + 78));
         addRenderableWidget(Button.builder(Component.literal("Close"), b -> onClose())
             .bounds(cx - 105, top + 110, 210, 20).build());
     }
 
-    private static Component toggle(String name, Runnable action) {
-        return Component.literal(name + "  •  toggle");
+    private Button toggleButton(String name, Runnable action, int cx, int y) {
+        return Button.builder(Component.literal(name + "  •  ON/OFF"), b -> action.run())
+            .bounds(cx - 105, y, 210, 20).build();
     }
 
     @Override
