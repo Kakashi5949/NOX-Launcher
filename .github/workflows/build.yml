@@ -22,10 +22,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Publish Windows x64 app
-        run: dotnet publish ./NOXLauncher/NOXLauncher.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true -p:IncludeNativeLibrariesForSelfExtract=true
+        run: dotnet publish ./NOXLauncher/NOXLauncher.csproj -c Release -r win-x64 --self-contained true -p:PublishSingleFile=false
 
       - name: Upload launcher
         uses: actions/upload-artifact@v4
         with:
-          name: NOX-Launcher-Windows-x64
+          name: NOX-Launcher-Windows-x64-safe-build
           path: ./NOXLauncher/bin/Release/net8.0-windows/win-x64/publish/
