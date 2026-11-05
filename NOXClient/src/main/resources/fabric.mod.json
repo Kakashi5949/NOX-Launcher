@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "id": "noxclient",
+  "version": "${version}",
+  "name": "NØX Client",
+  "description": "A black and white utility and PvP HUD client.",
+  "authors": ["SKEATXBX"],
+  "license": "All-Rights-Reserved",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["gg.nox.client.NoxClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.20.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
