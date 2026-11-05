@@ -8,7 +8,6 @@ import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -50,7 +49,7 @@ public class NoxClient implements ClientModInitializer {
         }
         if (armor) {
             int x = 8;
-            for (ItemStack stack : mc.player.getInventory().armor) {
+            for (ItemStack stack : mc.player.getArmorSlots()) {
                 if (!stack.isEmpty()) {
                     g.renderItem(stack, x, y);
                     x += 20;
@@ -68,7 +67,7 @@ public class NoxClient implements ClientModInitializer {
     }
 
     private static void drawKey(GuiGraphics g, Minecraft mc, String label, int key, int x, int y) {
-        boolean down = GLFW.glfwGetKey(mc.getWindow().getWindow(), key) == GLFW.GLFW_PRESS;
+        boolean down = GLFW.glfwGetKey(mc.getWindow().handle(), key) == GLFW.GLFW_PRESS;
         g.fill(x, y, x + 22, y + 18, down ? 0xDDFFFFFF : 0xAA000000);
         int color = down ? 0xFF000000 : 0xFFFFFFFF;
         g.drawCenteredString(mc.font, label, x + 11, y + 5, color);
