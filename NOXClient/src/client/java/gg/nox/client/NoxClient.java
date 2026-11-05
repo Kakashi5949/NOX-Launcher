@@ -7,10 +7,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.renderer.RenderPipelines;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import org.lwjgl.glfw.GLFW;
 
 public class NoxClient implements ClientModInitializer {
@@ -49,11 +46,12 @@ public class NoxClient implements ClientModInitializer {
         }
         if (armor) {
             int x = 8;
-            for (ItemStack stack : mc.player.getArmorSlots()) {
+            for (int slot = 36; slot <= 39; slot++) {
+                ItemStack stack = mc.player.getInventory().getItem(slot);
                 if (!stack.isEmpty()) {
                     g.renderItem(stack, x, y);
-                    x += 20;
                 }
+                x += 20;
             }
         }
         if (keystrokes) {
