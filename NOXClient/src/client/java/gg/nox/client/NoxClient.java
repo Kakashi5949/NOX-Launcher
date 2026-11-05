@@ -15,6 +15,7 @@ public class NoxClient implements ClientModInitializer {
     public static boolean coordinates = true;
     public static boolean armor = true;
     public static boolean keystrokes = true;
+    public static boolean speed = true;
     private static KeyMapping menuKey;
 
     @Override
@@ -42,6 +43,13 @@ public class NoxClient implements ClientModInitializer {
                 mc.player.getX(), mc.player.getY(), mc.player.getZ());
             g.fill(7, y, 190, y + 16, 0x99000000);
             g.drawString(mc.font, coords, 12, y + 4, 0xFFFFFFFF, false);
+            y += 20;
+        }
+        if (speed) {
+            double blocksPerSecond = mc.player.getDeltaMovement().horizontalDistance() * 20.0;
+            String speedText = String.format(java.util.Locale.ROOT, "SPEED  %.2f m/s", blocksPerSecond);
+            g.fill(7, y, 150, y + 16, 0x99000000);
+            g.drawString(mc.font, speedText, 12, y + 4, 0xFFFFFFFF, false);
             y += 20;
         }
         if (armor) {
